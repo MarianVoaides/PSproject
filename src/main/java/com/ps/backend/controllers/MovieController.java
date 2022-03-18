@@ -27,22 +27,16 @@ public class MovieController {
     @GetMapping("/all")
     public List<Movie> getAll()
     {
-        System.out.println("GET ALL");
         return movieService.getAllMovies();
     }
 
     @PostMapping("")
     public Movie post(@RequestBody Movie movie) {
-        System.out.println("POST");
-        System.out.println(movie);
-        movieService.addMovie(movie);
-        return movie;
+        return movieService.addMovie(movie);
     }
 
     @DeleteMapping("")
     public void deleteMoviename(@RequestParam String moviename) {
-        System.out.println("DELETE");
-        System.out.println(moviename);
         movieService.deleteMovieByMoviename(moviename);
     }
 

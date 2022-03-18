@@ -26,7 +26,9 @@ public class ActorService implements IActorService
     }
 
     @Override
-    public Actor editActor(Actor actor) {
+    public Actor editActor(String actorname, int age) {
+        Actor actor = findActorByActorname(actorname);
+        actor.setAge(age);
         return actorRepository.save(actor);
     }
 

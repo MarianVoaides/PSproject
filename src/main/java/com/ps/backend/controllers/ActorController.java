@@ -27,29 +27,22 @@ public class ActorController {
     @GetMapping("/all")
     public List<Actor> getAll()
     {
-        System.out.println("GET ALL");
         return actorService.getAllActors();
     }
 
     @PostMapping("")
     public Actor post(@RequestBody Actor actor) {
-        System.out.println("POST");
-        System.out.println(actor);
         actorService.addActor(actor);
         return actor;
     }
 
     @DeleteMapping("")
     public void deleteActorname(@RequestParam String actorname) {
-        System.out.println("DELETE");
-        System.out.println(actorname);
         actorService.deleteActorByActorname(actorname);
     }
 
     @PutMapping("")
     public Actor put(@RequestParam String actorname, int age) {
-        Actor actor = actorService.findActorByActorname(actorname);
-        actor.setAge(age);
-        return actorService.editActor(actor);
+        return actorService.editActor(actorname, age);
     }
 }
