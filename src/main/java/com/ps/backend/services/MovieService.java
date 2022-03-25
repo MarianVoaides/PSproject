@@ -6,11 +6,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Movie service.
+ */
 @Service
 public class MovieService implements IMovieService{
 
     private MovieRepository movieRepository;
 
+    /**
+     * Instantiates a new Movie service.
+     *
+     * @param movieRepository the movie repository
+     */
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }

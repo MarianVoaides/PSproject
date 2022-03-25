@@ -6,11 +6,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Actor service.
+ */
 @Service
 public class ActorService implements IActorService
 {
     private ActorRepository actorRepository;
 
+    /**
+     * Instantiates a new Actor service.
+     *
+     * @param actorRepository the actor repository
+     */
     public ActorService(ActorRepository actorRepository) {
         this.actorRepository = actorRepository;
     }
