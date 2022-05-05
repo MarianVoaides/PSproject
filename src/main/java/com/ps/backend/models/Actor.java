@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "actor")
-public class Actor {
+public class Actor implements Crewmember {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +70,7 @@ public class Actor {
     public void setname(String name) {
         this.actorname = name;
     }
+
 
     /**
      * Gets actorname.

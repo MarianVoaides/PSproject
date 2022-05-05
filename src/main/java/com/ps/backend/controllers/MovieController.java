@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -30,13 +31,18 @@ public class MovieController {
     /**
      * Get movie.
      *
-     * @param moviename the moviename
+     * @param id the int
      * @return the movie
      */
     @GetMapping("")
-    public Movie get(@RequestParam String moviename)
+    public Movie get(@RequestParam int id)
     {
-        return movieService.findMovieByMoviename(moviename);
+        Optional<Movie> movie = movieService.findMovieByMoviename(id);
+        if(movie.isPresent()){
+            Movie m1 = movie.get();
+            return m1;
+        }
+        return null;
     }
 
     /**
@@ -64,26 +70,30 @@ public class MovieController {
     /**
      * Delete moviename.
      *
-     * @param moviename the moviename
+     * @param id the int
      */
     @DeleteMapping("")
-    public void deleteMoviename(@RequestParam String moviename) {
-        movieService.deleteMovieByMoviename(moviename);
+    public void deleteMoviename(@RequestParam int id) {
+        movieService.deleteMoviename(id);
     }
 
     /**
      * Put movie.
      *
-     * @param moviename the moviename
+     * @param id the int
      * @param director  the director
      * @param genre     the genre
      * @return the movie
      */
     @PutMapping("")
-    public Movie put(@RequestParam String moviename, @RequestParam String director, @RequestParam String genre) {
-        Movie movie = movieService.findMovieByMoviename(moviename);
-        movie.setGenre(genre);
-        movie.setFilmDirector(director);
-        return movieService.editMovie(movie);
+    public Movie put(@RequestParam int id, @RequestParam String director, @RequestParam String genre) {
+        Optional<Movie> movie = movieService.findMovieByMoviename(id);
+        if(movie.isPresent()){
+            Movie m1 = movie.get();
+            m1.setGenre(genre);
+            m1.setFilmDirector(director);
+            return movieService.editMovie(m1);
+        }
+        return null;
     }
 }

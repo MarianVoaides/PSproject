@@ -5,6 +5,7 @@ import com.ps.backend.repositories.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The type Movie service.
@@ -14,23 +15,17 @@ public class MovieService implements IMovieService{
 
     private MovieRepository movieRepository;
 
-    /**
-     * Instantiates a new Movie service.
-     *
-     * @param movieRepository the movie repository
-     */
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
-    @Override
-    public Movie findMovieByMoviename(String moviename) {
-        return movieRepository.findByMoviename(moviename);
+    public Optional<Movie> findMovieByMoviename(int id) {
+        return movieRepository.findById(id);
     }
 
     @Override
-    public Movie addMovie(Movie client) {
-        return movieRepository.save(client);
+    public Movie addMovie(Movie movie) {
+        return movieRepository.save(movie);
     }
 
     @Override
@@ -39,12 +34,19 @@ public class MovieService implements IMovieService{
     }
 
     @Override
-    public void deleteMovieByMoviename(String moviename) {
-        movieRepository.deleteByMoviename(moviename);
+    public void deleteMoviename(int id) {
+        movieRepository.deleteById(id);
     }
 
     @Override
     public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+        return (List<Movie>) movieRepository.findAll();
     }
+
+    /**
+     * Instantiates a new Movie service.
+     *
+     * @param movieRepository the movie repository
+     */
+
 }

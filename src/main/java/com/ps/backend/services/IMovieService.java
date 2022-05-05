@@ -3,6 +3,7 @@ package com.ps.backend.services;
 import com.ps.backend.models.Movie;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -12,10 +13,10 @@ public interface IMovieService {
     /**
      * Find movie by moviename movie.
      *
-     * @param moviename the moviename
+     * @param id the int
      * @return the movie
      */
-    public Movie findMovieByMoviename(String moviename);
+    public Optional<Movie> findMovieByMoviename(int id);
 
     /**
      * Add movie movie.
@@ -34,11 +35,11 @@ public interface IMovieService {
     public Movie editMovie(Movie movie);
 
     /**
-     * Delete movie by moviename.
+     * Delete movie by id.
      *
-     * @param moviename the moviename
+     * @param id the int
      */
-    public void deleteMovieByMoviename(String moviename);
+    public void deleteMoviename(int id);
 
     /**
      * Gets all movies.
